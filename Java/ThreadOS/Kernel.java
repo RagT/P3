@@ -115,20 +115,20 @@ public class Kernel
                     case RAWREAD: // read a block of data from disk
                         while ( disk.read( param, ( byte[] )args ) == false )
                             ioQueue.enqueueAndSleep(COND_DISK_REQ);
-                        while ( disk.testAndResetReady( ) == false )
+                        while ( disk.testAndResetReady( ) == false );
                             ioQueue.enqueueAndSleep(COND_DISK_FIN);
                         return OK;
                     case RAWWRITE: // write a block of data to disk
-                        while ( disk.write( param, ( byte[] )args ) == false )
+                        while ( disk.write( param, ( byte[] )args ) == false );
                             ioQueue.enqueueAndSleep(COND_DISK_REQ);
                         while ( disk.testAndResetReady( ) == false )
-                            ioQueue.enqueueAndSleep(COND_DISK_FIN);
+                           ioQueue.enqueueAndSleep(COND_DISK_FIN);
                         return OK;
                     case SYNC:     // synchronize disk data to a real file
-                        while ( disk.sync( ) == false )  // busy wait
-                            ioQueue.enqueueAndSleep(COND_DISK_REQ);
-                        while ( disk.testAndResetReady( ) == false ) // busy wait
-                            ioQueue.enqueueAndSleep(COND_DISK_FIN);
+                        while ( disk.sync( ) == false );
+                           ioQueue.enqueueAndSleep(COND_DISK_REQ);
+                        while ( disk.testAndResetReady( ) == false );
+                           ioQueue.enqueueAndSleep(COND_DISK_FIN);
                         return OK;
                     //End Part2 ************************************************************************************
 
@@ -265,4 +265,3 @@ public class Kernel
         }
     }
 }
-
