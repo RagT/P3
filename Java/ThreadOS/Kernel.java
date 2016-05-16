@@ -85,6 +85,8 @@ public class Kernel
                         return OK;
                     case EXEC:
                         return sysExec( ( String[] )args );
+
+                    //Part1 ********************************************************************************
                     case WAIT:
                         // get the current thread id
                         // let the current thread sleep in waitQueue under the
@@ -104,6 +106,8 @@ public class Kernel
                         }
                         scheduler.deleteThread();
                         return OK;
+                    //End Part1 *****************************************************************************
+
                     case SLEEP:   // sleep a given period of milliseconds
                         scheduler.sleepThread( param ); // param = milliseconds
                         return OK;
@@ -147,7 +151,7 @@ public class Kernel
                                 }
                             case STDOUT:
                             case STDERR:
-                                System.out.println( "threaOS: caused read errors" );
+                                System.out.println( "threadOS: caused read errors" );
                                 return ERROR;
                         }
                         // return FileSystem.read( param, byte args[] );
@@ -155,7 +159,7 @@ public class Kernel
                     case WRITE:
                         switch ( param ) {
                             case STDIN:
-                                System.out.println( "threaOS: cannot write to System.in" );
+                                System.out.println( "threadOS: cannot write to System.in" );
                                 return ERROR;
                             case STDOUT:
                                 System.out.print( (String)args );
