@@ -22,12 +22,15 @@ class Test3 extends Thread {
         //Makes threads execute computational and disk tasks
         for (int i = 0; i < pairs; i++) {
             String[] thread1 = SysLib.stringToArgs("TestThread3 CompTest 10000 " + startTime);
-            String[] thread2 = SysLib.stringToArgs("TestThread3 DiskTest 600 " + startTime);
+            String[] thread2 = SysLib.stringToArgs("TestThread3 DiskTest 5 " + startTime);
 
             SysLib.exec(thread1);//Executes computational thread
             SysLib.exec(thread2); //Executes Disk Read/Write thread
         }
 
+        for(int i = 0; i < pairs * 2; i++){
+            SysLib.join(); //wait for threads to complete
+        }
         totalTime =  new Date().getTime() - startTime;
         SysLib.cout("elapsed time = " + totalTime + "ms\n");
         SysLib.exit();
