@@ -26,17 +26,13 @@ public class TestThread3 extends Thread {
         SysLib.exit();
     }
 
-    // Randomly reads or writes to a random block on the disk
+    //Does some disk reads and writes
     private void RunDisk() {
         for(int i = 0; i < num; i++) {
-            int block = rand.nextInt(diskSize); //pick block
-            int option = rand.nextInt(1); //pick whether to read or write
-            if (option == 0)
-                SysLib.rawread(block, bytes);
-            else
-                SysLib.rawwrite(block, bytes);
-
+            SysLib.rawwrite(i, bytes);
+            SysLib.rawread(i, bytes);
         }
+        Syslib.cout("Disk task completed at: " +  new Date().getTime() + "ms.");
     }
 
     //Computes cumulative sum of factorials from 0 to num-1
@@ -45,6 +41,7 @@ public class TestThread3 extends Thread {
         for(int i = 0; i < num; i++){
             sum += factorial(i);
         }
+        Syslib.cout("Computation task completed at: " +  new Date().getTime() + "ms.");
     }
 
     private int factorial(int n){

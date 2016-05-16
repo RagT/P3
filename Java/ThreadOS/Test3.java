@@ -18,21 +18,14 @@ class Test3 extends Thread {
     }
 
     public void run() {
-        Map<Integer,String> tasks = new HashMap<Integer,String>(); //Stores tasks executed by which thread
 
         //Makes threads execute computational and disk tasks
         for (int i = 0; i < pairs; i++) {
             String[] thread1 = SysLib.stringToArgs("TestThread3 CompTest 10000");
             String[] thread2 = SysLib.stringToArgs("TestThread3 DiskTest 5000");
 
-            tasks.put(SysLib.exec(thread1),"Computation"); //Executes computational task thread
-            tasks.put(SysLib.exec(thread2),"Disk Task"); //Executes Disk Read/Write Task thread
-        }
-
-
-        for (int i = 0; i < pairs * 2; i++) {
-            String type = tasks.remove(SysLib.join());
-            SysLib.cout(type +" finished in " + ( new Date().getTime()- startTime) + "ms\n");
+            SysLib.exec(thread1);//Executes computational thread
+            SysLib.exec(thread2); //Executes Disk Read/Write thread
         }
 
         totalTime =  new Date().getTime() - startTime;
