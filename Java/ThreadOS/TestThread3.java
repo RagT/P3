@@ -13,7 +13,7 @@ public class TestThread3 extends Thread {
     public TestThread3(String[] args) {
         testType = args[0];
         num = Integer.parseInt(args[1]);
-        startTime = Integer.parseInt(args[2]);
+        startTime = Long.parseLong(args[2]);
         bytes = new byte[Disk.blockSize];
         rand = new Random();
     }
