@@ -102,7 +102,7 @@ public class Kernel
                         // condition = the current thread's parent id
                         myTcb = scheduler.getMyTcb();
                         if(myTcb != null) {
-                            waitQueue.dequeueAndWakeup(myTcb.getPid(), myTcb.getTid());
+                            waitQueue.dequeueAndWakeUp(myTcb.getPid(), myTcb.getTid());
                         }
                         scheduler.deleteThread();
                         return OK;
