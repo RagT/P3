@@ -34,7 +34,7 @@ public class TestThread3 extends Thread {
             SysLib.rawread(i, bytes);
         }
         SysLib.cout("Disk task completed at: " +
-                (new Date().getTime() - startTime) + "ms.");
+                (new Date().getTime() - startTime) + "ms.\n");
     }
 
     //Computes cumulative sum of factorials from 0 to num-1
@@ -44,7 +44,7 @@ public class TestThread3 extends Thread {
             sum += factorial(i);
         }
         SysLib.cout("Computation task completed at: " +
-                (new Date().getTime() - startTime) + "ms.");
+                (new Date().getTime() - startTime) + "ms.\n");
     }
 
     private int factorial(int n){
