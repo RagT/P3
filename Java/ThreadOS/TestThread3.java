@@ -8,11 +8,12 @@ public class TestThread3 extends Thread {
     private byte[] bytes;
     private Random rand;
     private int num; //number of times to run operation
-    final int diskSize = 1000;
+    private long startTime;
 
     public TestThread3(String[] args) {
         testType = args[0];
         num = Integer.parseInt(args[1]);
+        startTime = Integer.parseInt(args[2]);
         bytes = new byte[Disk.blockSize];
         rand = new Random();
     }
@@ -20,7 +21,7 @@ public class TestThread3 extends Thread {
     public void run() {
         if (testType.equals("CompTest")) { //Run computation
             RunComp();
-        } else if(testType.equals("DiskTest")) {			//Run Disk
+        } else{ //Run Disk task
             RunDisk();
         }
         SysLib.exit();
@@ -32,7 +33,8 @@ public class TestThread3 extends Thread {
             SysLib.rawwrite(i, bytes);
             SysLib.rawread(i, bytes);
         }
-        Syslib.cout("Disk task completed at: " +  new Date().getTime() + "ms.");
+        SysLib.cout("Disk task completed at: " +
+                (new Date().getTime() - startTime) + "ms.");
     }
 
     //Computes cumulative sum of factorials from 0 to num-1
@@ -41,7 +43,8 @@ public class TestThread3 extends Thread {
         for(int i = 0; i < num; i++){
             sum += factorial(i);
         }
-        Syslib.cout("Computation task completed at: " +  new Date().getTime() + "ms.");
+        SysLib.cout("Computation task completed at: " +
+                (new Date().getTime() - startTime) + "ms.");
     }
 
     private int factorial(int n){
