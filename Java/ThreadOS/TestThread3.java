@@ -1,5 +1,8 @@
 import java.util.*;
-
+/**
+*Runs either a computational or disk task
+ * for a certain umber of times based on args passed.
+ */
 public class TestThread3 extends Thread {
     private String testType;
     private byte[] bytes;
@@ -36,7 +39,18 @@ public class TestThread3 extends Thread {
         }
     }
 
-
+    //Computes cumulative sum of factorials from 0 to num-1
     private void RunComp() {
+        long sum = 0;
+        for(int i = 0; i < num; i++){
+            sum += factorial(i);
+        }
+    }
+
+    private int factorial(int n){
+        if(n <= 1){
+            return 1;
+        }
+        return n * factorial(n-1);
     }
 }
