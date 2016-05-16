@@ -1,12 +1,11 @@
 import java.util.*;
 /**
 *Runs either a computational or disk task
- * for a certain umber of times based on args passed.
+ * for a certain number of times based on args passed.
  */
 public class TestThread3 extends Thread {
     private String testType;
     private byte[] bytes;
-    private Random rand;
     private int num; //number of times to run operation
     private long startTime;
 
